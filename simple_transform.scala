@@ -4,7 +4,7 @@
 import $ivy.`org.apache.spark::spark-sql:3.2.1`
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql._
-import org.apache.spark.sql.functions.rand
+import org.apache.spark.sql.functions._
 
 /**
  * Spark Setup
@@ -15,7 +15,7 @@ val spark = SparkSession.builder().master("local[*]").getOrCreate()
 /**
  * Application Logic
  */
-val df = spark.range(10).select(rand().as("value"))
+val df = spark.range(10).select(concat(rand(), rand()).as("value"))
 df.show()
 
 
